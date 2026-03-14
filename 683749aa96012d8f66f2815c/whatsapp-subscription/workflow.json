@@ -391,8 +391,8 @@
       "id": "success-notify",
       "type": "TriggerNotify",
       "label": "Success Notification",
-      "x": 3500,
-      "y": 50,
+      "x": 3555,
+      "y": 240,
       "config": {
         "properties": {
           "label": "Subscription Created",
@@ -517,8 +517,8 @@
       "id": "end-node",
       "type": "End",
       "label": "End (Success)",
-      "x": 3750,
-      "y": 50,
+      "x": 3868,
+      "y": 238,
       "config": {}
     }
   ],
