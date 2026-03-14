@@ -1,0 +1,150 @@
+{
+  "components": [
+    {
+      "id": "start-node",
+      "type": "Start",
+      "label": "Start",
+      "x": 50,
+      "y": 150,
+      "config": {}
+    },
+    {
+      "id": "WAList-1771951061354",
+      "type": "WAList",
+      "label": "WA List 1",
+      "x": 658,
+      "y": 558,
+      "config": {
+        "properties": {
+          "body": "Failure TYext",
+          "label": "WA List 1",
+          "sections": [
+            {
+              "rows": [
+                {
+                  "id": "row_1",
+                  "title": "Option 1",
+                  "description": ""
+                }
+              ],
+              "title": "Section 1"
+            }
+          ],
+          "buttonText": "View Options",
+          "headerText": "Fail"
+        }
+      }
+    },
+    {
+      "id": "WAList-1771951080135",
+      "type": "WAList",
+      "label": "WA List 2",
+      "x": 644,
+      "y": 284,
+      "config": {
+        "properties": {
+          "body": "Success",
+          "label": "WA List 2",
+          "sections": [
+            {
+              "rows": [
+                {
+                  "id": "row_1",
+                  "title": "Option 1",
+                  "description": ""
+                }
+              ],
+              "title": "Section 1"
+            }
+          ],
+          "buttonText": "View Options",
+          "headerText": "Success"
+        }
+      }
+    },
+    {
+      "id": "WAOrderDetails-1771951841003",
+      "type": "WAOrderDetails",
+      "label": "WA Order 1",
+      "x": 302,
+      "y": 273,
+      "config": {
+        "properties": {
+          "body": "Body",
+          "label": "WA Order 1",
+          "order": {
+            "items": [],
+            "status": "pending",
+            "discount": {
+              "value": 9,
+              "offset": 100
+            },
+            "shipping": {
+              "value": 28,
+              "offset": 100
+            },
+            "subtotal": {
+              "value": 0,
+              "offset": 100
+            }
+          },
+          "currency": "INR",
+          "goodsType": "physical-goods",
+          "footerText": "Footer",
+          "paymentType": "upi",
+          "referenceId": "{{System.randomUUID()}}",
+          "orderConfigSource": "{{start-node.order}}",
+          "paymentConfiguration": "Lunchdroid"
+        }
+      }
+    },
+    {
+      "id": "CustomerPreferences-1773490200233",
+      "type": "CustomerPreferences",
+      "label": "Customer Data 1",
+      "x": 177,
+      "y": 483,
+      "config": {}
+    },
+    {
+      "id": "end-node",
+      "type": "End",
+      "label": "End",
+      "x": 1049,
+      "y": 168,
+      "config": {}
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-WAList-1771951080135_output-end-node-1771951092244",
+      "from": "WAList-1771951080135",
+      "to": "end-node",
+      "fromPort": "output"
+    },
+    {
+      "id": "conn-WAList-1771951061354_output-end-node-1771951094420",
+      "from": "WAList-1771951061354",
+      "to": "end-node",
+      "fromPort": "output"
+    },
+    {
+      "id": "conn-WAOrderDetails-1771951841003_success-WAList-1771951080135-1771951914494",
+      "from": "WAOrderDetails-1771951841003",
+      "to": "WAList-1771951080135",
+      "fromPort": "success"
+    },
+    {
+      "id": "conn-WAOrderDetails-1771951841003_failure-WAList-1771951061354-1771951916342",
+      "from": "WAOrderDetails-1771951841003",
+      "to": "WAList-1771951061354",
+      "fromPort": "failure"
+    },
+    {
+      "id": "conn-start-node_output-WAOrderDetails-1771951841003-1771956543784",
+      "from": "start-node",
+      "to": "WAOrderDetails-1771951841003",
+      "fromPort": "output"
+    }
+  ]
+}
