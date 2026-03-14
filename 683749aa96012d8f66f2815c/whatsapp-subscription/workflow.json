@@ -258,8 +258,8 @@
       "id": "route-schedule",
       "type": "MultiCondition",
       "label": "Route Schedule",
-      "x": 2650,
-      "y": 50,
+      "x": 2641,
+      "y": 124,
       "config": {
         "conditions": [
           {
@@ -311,8 +311,8 @@
       "id": "create-sub-weekdays",
       "type": "CreateSubscription",
       "label": "Create Sub (Weekdays)",
-      "x": 2950,
-      "y": 0,
+      "x": 2944,
+      "y": 83,
       "config": {
         "properties": {
           "label": "Create Weekday Subscription",
@@ -335,8 +335,8 @@
       "id": "create-sub-alternate",
       "type": "CreateSubscription",
       "label": "Create Sub (Alternate)",
-      "x": 2950,
-      "y": 100,
+      "x": 2943,
+      "y": 185,
       "config": {
         "properties": {
           "label": "Create Alternate Day Subscription",
@@ -357,8 +357,8 @@
       "id": "create-sub-weekly",
       "type": "CreateSubscription",
       "label": "Create Sub (Weekly)",
-      "x": 2950,
-      "y": 200,
+      "x": 2948,
+      "y": 293,
       "config": {
         "properties": {
           "label": "Create Weekly Subscription",
@@ -615,24 +615,6 @@
       "fromPort": "0"
     },
     {
-      "id": "conn-18",
-      "from": "route-schedule",
-      "to": "create-sub-weekdays",
-      "fromPort": "1"
-    },
-    {
-      "id": "conn-19",
-      "from": "route-schedule",
-      "to": "create-sub-alternate",
-      "fromPort": "2"
-    },
-    {
-      "id": "conn-20",
-      "from": "route-schedule",
-      "to": "create-sub-weekly",
-      "fromPort": "3"
-    },
-    {
       "id": "conn-21",
       "from": "create-sub-daily",
       "to": "confirm-msg"
@@ -709,6 +691,24 @@
       "id": "conn-35",
       "from": "cancel-confirm",
       "to": "manage-end"
+    },
+    {
+      "id": "conn-route-schedule_condition-1-create-sub-weekdays-1773490823438",
+      "from": "route-schedule",
+      "to": "create-sub-weekdays",
+      "fromPort": "condition-1"
+    },
+    {
+      "id": "conn-route-schedule_condition-2-create-sub-alternate-1773490825459",
+      "from": "route-schedule",
+      "to": "create-sub-alternate",
+      "fromPort": "condition-2"
+    },
+    {
+      "id": "conn-route-schedule_condition-3-create-sub-weekly-1773490827756",
+      "from": "route-schedule",
+      "to": "create-sub-weekly",
+      "fromPort": "condition-3"
     }
   ]
 }
