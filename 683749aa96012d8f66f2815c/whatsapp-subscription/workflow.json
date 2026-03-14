@@ -448,8 +448,8 @@
       "id": "pause-confirm",
       "type": "TextBlock",
       "label": "Pause Confirmed",
-      "x": 1400,
-      "y": 300,
+      "x": 1422,
+      "y": 323,
       "config": {
         "text": "⏸️ Your subscription has been paused. You can resume it anytime!",
         "label": "Pause Confirmed"
@@ -473,8 +473,8 @@
       "id": "resume-confirm",
       "type": "TextBlock",
       "label": "Resume Confirmed",
-      "x": 1400,
-      "y": 400,
+      "x": 1424,
+      "y": 425,
       "config": {
         "text": "▶️ Your subscription is back on! Deliveries will resume as scheduled.",
         "label": "Resume Confirmed"
@@ -498,8 +498,8 @@
       "id": "cancel-confirm",
       "type": "TextBlock",
       "label": "Cancel Confirmed",
-      "x": 1400,
-      "y": 500,
+      "x": 1428,
+      "y": 522,
       "config": {
         "text": "❌ Your subscription has been cancelled. We're sorry to see you go!\nYou can start a new subscription anytime.",
         "label": "Cancel Confirmed"
@@ -509,8 +509,8 @@
       "id": "manage-end",
       "type": "End",
       "label": "End (Manage)",
-      "x": 1650,
-      "y": 400,
+      "x": 1730,
+      "y": 426,
       "config": {}
     },
     {
