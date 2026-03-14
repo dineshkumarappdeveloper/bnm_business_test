@@ -1,0 +1,714 @@
+{
+  "components": [
+    {
+      "id": "start-node",
+      "type": "Start",
+      "label": "Start",
+      "x": 50,
+      "y": 400,
+      "config": {}
+    },
+    {
+      "id": "welcome-msg",
+      "type": "TextBlock",
+      "label": "Welcome",
+      "x": 300,
+      "y": 400,
+      "config": {
+        "text": "Welcome to our Subscription Service! 🎉\nManage your deliveries right here on WhatsApp.",
+        "label": "Welcome"
+      }
+    },
+    {
+      "id": "main-menu",
+      "type": "WAReplyButtons",
+      "label": "Main Menu",
+      "x": 550,
+      "y": 400,
+      "config": {
+        "properties": {
+          "body": "What would you like to do today?",
+          "buttons": [
+            {
+              "id": "new-sub",
+              "title": "New Subscription"
+            },
+            {
+              "id": "manage-sub",
+              "title": "Manage Sub"
+            },
+            {
+              "id": "browse",
+              "title": "Browse Plans"
+            }
+          ],
+          "footerText": "Choose an option",
+          "headerType": "none"
+        }
+      }
+    },
+    {
+      "id": "plan-list",
+      "type": "PlanSelector",
+      "label": "Browse Plans",
+      "x": 850,
+      "y": 650,
+      "config": {
+        "label": "Browse Plans",
+        "title": "Our Subscription Plans",
+        "layout": "cards",
+        "showPrice": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "browse-info",
+      "type": "TextBlock",
+      "label": "Browse Info",
+      "x": 1150,
+      "y": 650,
+      "config": {
+        "text": "Thanks for browsing! When you're ready, come back and tap \"New Subscription\" to get started. 😊",
+        "label": "Browse Info"
+      }
+    },
+    {
+      "id": "browse-end",
+      "type": "End",
+      "label": "End (Browse)",
+      "x": 1450,
+      "y": 650,
+      "config": {}
+    },
+    {
+      "id": "select-plan",
+      "type": "PlanSelector",
+      "label": "Select Plan",
+      "x": 850,
+      "y": 150,
+      "config": {
+        "label": "Choose Your Plan",
+        "title": "Available Subscription Plans",
+        "layout": "cards",
+        "showPrice": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "collect-name",
+      "type": "TextInput",
+      "label": "Customer Name",
+      "x": 1150,
+      "y": 150,
+      "config": {
+        "properties": {
+          "text": "Please enter your full name:",
+          "label": "Your Name",
+          "required": true,
+          "inputType": "text",
+          "placeholder": "e.g. Priya Sharma"
+        }
+      }
+    },
+    {
+      "id": "collect-phone",
+      "type": "TextInput",
+      "label": "Phone Number",
+      "x": 1400,
+      "y": 150,
+      "config": {
+        "properties": {
+          "text": "Please enter your phone number:",
+          "label": "Phone Number",
+          "required": true,
+          "inputType": "phone",
+          "placeholder": "e.g. 9876543210"
+        }
+      }
+    },
+    {
+      "id": "collect-address",
+      "type": "WAAddressMessage",
+      "label": "Delivery Address",
+      "x": 1650,
+      "y": 150,
+      "config": {
+        "properties": {
+          "body": "Please provide your delivery address 📍",
+          "country": "IN"
+        }
+      }
+    },
+    {
+      "id": "check-area",
+      "type": "CheckOperatingArea",
+      "label": "Check Service Area",
+      "x": 1900,
+      "y": 150,
+      "config": {
+        "properties": {
+          "areaIds": [
+            "default-area"
+          ],
+          "inputType": "address_component",
+          "addressComponentId": "collect-address",
+          "addressComponentLabel": "Delivery Address"
+        }
+      }
+    },
+    {
+      "id": "area-fail-msg",
+      "type": "TextBlock",
+      "label": "Area Not Served",
+      "x": 2150,
+      "y": 300,
+      "config": {
+        "text": "Sorry, we don't currently deliver to your area. 😔\nWe're expanding soon — stay tuned!",
+        "label": "Area Not Served"
+      }
+    },
+    {
+      "id": "area-fail-end",
+      "type": "End",
+      "label": "End (Area Fail)",
+      "x": 2400,
+      "y": 300,
+      "config": {}
+    },
+    {
+      "id": "save-customer",
+      "type": "SaveValue",
+      "label": "Save Customer Info",
+      "x": 2150,
+      "y": 50,
+      "config": {
+        "properties": {
+          "values": [
+            {
+              "key": "customerName",
+              "value": "{{collect-name.input}}"
+            },
+            {
+              "key": "customerPhone",
+              "value": "{{collect-phone.input}}"
+            },
+            {
+              "key": "selectedPlanId",
+              "value": "{{select-plan.selectedPlanId}}"
+            },
+            {
+              "key": "deliveryAddress",
+              "value": "{{collect-address.address}}"
+            },
+            {
+              "key": "deliveryCity",
+              "value": "{{collect-address.city}}"
+            },
+            {
+              "key": "deliveryPincode",
+              "value": "{{collect-address.pinCode}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "delivery-days",
+      "type": "WAList",
+      "label": "Delivery Schedule",
+      "x": 2400,
+      "y": 50,
+      "config": {
+        "properties": {
+          "body": "How often would you like deliveries?",
+          "sections": [
+            {
+              "rows": [
+                {
+                  "id": "daily",
+                  "title": "Daily",
+                  "description": "Mon to Sat delivery"
+                },
+                {
+                  "id": "weekdays",
+                  "title": "Weekdays Only",
+                  "description": "Mon to Fri delivery"
+                },
+                {
+                  "id": "alternate",
+                  "title": "Alternate Days",
+                  "description": "Mon, Wed, Fri delivery"
+                },
+                {
+                  "id": "weekly",
+                  "title": "Once a Week",
+                  "description": "Every Monday delivery"
+                }
+              ],
+              "title": "Delivery Frequency"
+            }
+          ],
+          "buttonText": "View Schedules",
+          "footerText": "Select your preferred schedule",
+          "headerText": "Delivery Schedule"
+        }
+      }
+    },
+    {
+      "id": "route-schedule",
+      "type": "MultiCondition",
+      "label": "Route Schedule",
+      "x": 2650,
+      "y": 50,
+      "config": {
+        "conditions": [
+          {
+            "condition": "{{delivery-days.selectedId}} === 'daily'",
+            "outputLabel": "Daily"
+          },
+          {
+            "condition": "{{delivery-days.selectedId}} === 'weekdays'",
+            "outputLabel": "Weekdays"
+          },
+          {
+            "condition": "{{delivery-days.selectedId}} === 'alternate'",
+            "outputLabel": "Alternate"
+          },
+          {
+            "condition": "{{delivery-days.selectedId}} === 'weekly'",
+            "outputLabel": "Weekly"
+          }
+        ],
+        "defaultOutputLabel": "Daily"
+      }
+    },
+    {
+      "id": "create-sub-daily",
+      "type": "CreateSubscription",
+      "label": "Create Sub (Daily)",
+      "x": 2950,
+      "y": -100,
+      "config": {
+        "properties": {
+          "label": "Create Daily Subscription",
+          "planId": "{{session.selectedPlanId}}",
+          "usePlan": true,
+          "basePrice": "{{select-plan.price}}",
+          "deliveryDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "deliveryAddress": "{{session.deliveryAddress}}",
+          "deliveryPattern": "weekly"
+        }
+      }
+    },
+    {
+      "id": "create-sub-weekdays",
+      "type": "CreateSubscription",
+      "label": "Create Sub (Weekdays)",
+      "x": 2950,
+      "y": 0,
+      "config": {
+        "properties": {
+          "label": "Create Weekday Subscription",
+          "planId": "{{session.selectedPlanId}}",
+          "usePlan": true,
+          "basePrice": "{{select-plan.price}}",
+          "deliveryDays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "deliveryAddress": "{{session.deliveryAddress}}",
+          "deliveryPattern": "weekly"
+        }
+      }
+    },
+    {
+      "id": "create-sub-alternate",
+      "type": "CreateSubscription",
+      "label": "Create Sub (Alternate)",
+      "x": 2950,
+      "y": 100,
+      "config": {
+        "properties": {
+          "label": "Create Alternate Day Subscription",
+          "planId": "{{session.selectedPlanId}}",
+          "usePlan": true,
+          "basePrice": "{{select-plan.price}}",
+          "deliveryDays": [
+            1,
+            3,
+            5
+          ],
+          "deliveryAddress": "{{session.deliveryAddress}}",
+          "deliveryPattern": "weekly"
+        }
+      }
+    },
+    {
+      "id": "create-sub-weekly",
+      "type": "CreateSubscription",
+      "label": "Create Sub (Weekly)",
+      "x": 2950,
+      "y": 200,
+      "config": {
+        "properties": {
+          "label": "Create Weekly Subscription",
+          "planId": "{{session.selectedPlanId}}",
+          "usePlan": true,
+          "basePrice": "{{select-plan.price}}",
+          "deliveryDays": [
+            1
+          ],
+          "deliveryAddress": "{{session.deliveryAddress}}",
+          "deliveryPattern": "weekly"
+        }
+      }
+    },
+    {
+      "id": "confirm-msg",
+      "type": "SendWhatsapp",
+      "label": "Send Confirmation",
+      "x": 3250,
+      "y": 50,
+      "config": {
+        "label": "Send Confirmation WhatsApp",
+        "messageBody": "✅ Hi {{session.customerName}}, your subscription is confirmed!\n\n📦 Plan: {{select-plan.selectedPlanId}}\n📅 Schedule: {{delivery-days.selectedTitle}}\n📍 Address: {{session.deliveryAddress}}, {{session.deliveryCity}} - {{session.deliveryPincode}}\n\nYou'll receive a reminder before each delivery. Thank you! 🎉",
+        "messageType": "text",
+        "toPhoneNumber": "{{session.customerPhone}}",
+        "credentialName": "whatsapp_creds"
+      }
+    },
+    {
+      "id": "success-notify",
+      "type": "TriggerNotify",
+      "label": "Success Notification",
+      "x": 3500,
+      "y": 50,
+      "config": {
+        "properties": {
+          "label": "Subscription Created",
+          "title": "Subscription Active",
+          "message": "Your subscription has been set up successfully! 🎉",
+          "notifyType": "success"
+        }
+      }
+    },
+    {
+      "id": "manage-menu",
+      "type": "WAReplyButtons",
+      "label": "Manage Options",
+      "x": 850,
+      "y": 400,
+      "config": {
+        "properties": {
+          "body": "What would you like to do with your subscription?",
+          "buttons": [
+            {
+              "id": "pause",
+              "title": "Pause"
+            },
+            {
+              "id": "resume",
+              "title": "Resume"
+            },
+            {
+              "id": "cancel",
+              "title": "Cancel"
+            }
+          ],
+          "footerText": "Manage your subscription",
+          "headerType": "none"
+        }
+      }
+    },
+    {
+      "id": "pause-sub",
+      "type": "ManageSubscription",
+      "label": "Pause Subscription",
+      "x": 1150,
+      "y": 300,
+      "config": {
+        "properties": {
+          "label": "Pause Subscription",
+          "action": "pause",
+          "subscriptionId": "{{session.subscriptionId}}"
+        }
+      }
+    },
+    {
+      "id": "pause-confirm",
+      "type": "TextBlock",
+      "label": "Pause Confirmed",
+      "x": 1400,
+      "y": 300,
+      "config": {
+        "text": "⏸️ Your subscription has been paused. You can resume it anytime!",
+        "label": "Pause Confirmed"
+      }
+    },
+    {
+      "id": "resume-sub",
+      "type": "ManageSubscription",
+      "label": "Resume Subscription",
+      "x": 1150,
+      "y": 400,
+      "config": {
+        "properties": {
+          "label": "Resume Subscription",
+          "action": "resume",
+          "subscriptionId": "{{session.subscriptionId}}"
+        }
+      }
+    },
+    {
+      "id": "resume-confirm",
+      "type": "TextBlock",
+      "label": "Resume Confirmed",
+      "x": 1400,
+      "y": 400,
+      "config": {
+        "text": "▶️ Your subscription is back on! Deliveries will resume as scheduled.",
+        "label": "Resume Confirmed"
+      }
+    },
+    {
+      "id": "cancel-sub",
+      "type": "ManageSubscription",
+      "label": "Cancel Subscription",
+      "x": 1150,
+      "y": 500,
+      "config": {
+        "properties": {
+          "label": "Cancel Subscription",
+          "action": "cancel",
+          "subscriptionId": "{{session.subscriptionId}}"
+        }
+      }
+    },
+    {
+      "id": "cancel-confirm",
+      "type": "TextBlock",
+      "label": "Cancel Confirmed",
+      "x": 1400,
+      "y": 500,
+      "config": {
+        "text": "❌ Your subscription has been cancelled. We're sorry to see you go!\nYou can start a new subscription anytime.",
+        "label": "Cancel Confirmed"
+      }
+    },
+    {
+      "id": "manage-end",
+      "type": "End",
+      "label": "End (Manage)",
+      "x": 1650,
+      "y": 400,
+      "config": {}
+    },
+    {
+      "id": "end-node",
+      "type": "End",
+      "label": "End (Success)",
+      "x": 3750,
+      "y": 50,
+      "config": {}
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1",
+      "from": "start-node",
+      "to": "welcome-msg"
+    },
+    {
+      "id": "conn-2",
+      "from": "welcome-msg",
+      "to": "main-menu"
+    },
+    {
+      "id": "conn-3",
+      "from": "main-menu",
+      "to": "select-plan",
+      "fromPort": "new-sub"
+    },
+    {
+      "id": "conn-4",
+      "from": "main-menu",
+      "to": "manage-menu",
+      "fromPort": "manage-sub"
+    },
+    {
+      "id": "conn-5",
+      "from": "main-menu",
+      "to": "plan-list",
+      "fromPort": "browse"
+    },
+    {
+      "id": "conn-6",
+      "from": "plan-list",
+      "to": "browse-info"
+    },
+    {
+      "id": "conn-7",
+      "from": "browse-info",
+      "to": "browse-end"
+    },
+    {
+      "id": "conn-8",
+      "from": "select-plan",
+      "to": "collect-name"
+    },
+    {
+      "id": "conn-9",
+      "from": "collect-name",
+      "to": "collect-phone"
+    },
+    {
+      "id": "conn-10",
+      "from": "collect-phone",
+      "to": "collect-address"
+    },
+    {
+      "id": "conn-11",
+      "from": "collect-address",
+      "to": "check-area"
+    },
+    {
+      "id": "conn-12",
+      "from": "check-area",
+      "to": "save-customer",
+      "fromPort": "true"
+    },
+    {
+      "id": "conn-13",
+      "from": "check-area",
+      "to": "area-fail-msg",
+      "fromPort": "false"
+    },
+    {
+      "id": "conn-14",
+      "from": "area-fail-msg",
+      "to": "area-fail-end"
+    },
+    {
+      "id": "conn-15",
+      "from": "save-customer",
+      "to": "delivery-days"
+    },
+    {
+      "id": "conn-16",
+      "from": "delivery-days",
+      "to": "route-schedule"
+    },
+    {
+      "id": "conn-17",
+      "from": "route-schedule",
+      "to": "create-sub-daily",
+      "fromPort": "0"
+    },
+    {
+      "id": "conn-18",
+      "from": "route-schedule",
+      "to": "create-sub-weekdays",
+      "fromPort": "1"
+    },
+    {
+      "id": "conn-19",
+      "from": "route-schedule",
+      "to": "create-sub-alternate",
+      "fromPort": "2"
+    },
+    {
+      "id": "conn-20",
+      "from": "route-schedule",
+      "to": "create-sub-weekly",
+      "fromPort": "3"
+    },
+    {
+      "id": "conn-21",
+      "from": "create-sub-daily",
+      "to": "confirm-msg"
+    },
+    {
+      "id": "conn-22",
+      "from": "create-sub-weekdays",
+      "to": "confirm-msg"
+    },
+    {
+      "id": "conn-23",
+      "from": "create-sub-alternate",
+      "to": "confirm-msg"
+    },
+    {
+      "id": "conn-24",
+      "from": "create-sub-weekly",
+      "to": "confirm-msg"
+    },
+    {
+      "id": "conn-25",
+      "from": "confirm-msg",
+      "to": "success-notify"
+    },
+    {
+      "id": "conn-26",
+      "from": "success-notify",
+      "to": "end-node"
+    },
+    {
+      "id": "conn-27",
+      "from": "manage-menu",
+      "to": "pause-sub",
+      "fromPort": "pause"
+    },
+    {
+      "id": "conn-28",
+      "from": "manage-menu",
+      "to": "resume-sub",
+      "fromPort": "resume"
+    },
+    {
+      "id": "conn-29",
+      "from": "manage-menu",
+      "to": "cancel-sub",
+      "fromPort": "cancel"
+    },
+    {
+      "id": "conn-30",
+      "from": "pause-sub",
+      "to": "pause-confirm"
+    },
+    {
+      "id": "conn-31",
+      "from": "resume-sub",
+      "to": "resume-confirm"
+    },
+    {
+      "id": "conn-32",
+      "from": "cancel-sub",
+      "to": "cancel-confirm"
+    },
+    {
+      "id": "conn-33",
+      "from": "pause-confirm",
+      "to": "manage-end"
+    },
+    {
+      "id": "conn-34",
+      "from": "resume-confirm",
+      "to": "manage-end"
+    },
+    {
+      "id": "conn-35",
+      "from": "cancel-confirm",
+      "to": "manage-end"
+    }
+  ]
+}
