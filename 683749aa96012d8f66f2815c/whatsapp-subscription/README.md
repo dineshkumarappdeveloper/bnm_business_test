@@ -1,7 +1,7 @@
 # Whatsapp Subscription
 
 > Auto-generated from BNM BusinessStudio workflow
-> Last updated: 2026-03-14T12:33:47.752Z
+> Last updated: 2026-03-14T12:34:09.245Z
 
 ## Flow Summary
 

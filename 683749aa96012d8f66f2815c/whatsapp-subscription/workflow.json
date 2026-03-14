@@ -12,8 +12,8 @@
       "id": "welcome-msg",
       "type": "TextBlock",
       "label": "Welcome",
-      "x": 297,
-      "y": 414,
+      "x": 304,
+      "y": 396,
       "config": {
         "text": "Welcome to our Subscription Service! 🎉\nManage your deliveries right here on WhatsApp.",
         "label": "Welcome"
