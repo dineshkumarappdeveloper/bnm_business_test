@@ -12,8 +12,8 @@
       "id": "welcome-msg",
       "type": "TextBlock",
       "label": "Welcome",
-      "x": 300,
-      "y": 400,
+      "x": 297,
+      "y": 414,
       "config": {
         "text": "Welcome to our Subscription Service! 🎉\nManage your deliveries right here on WhatsApp.",
         "label": "Welcome"
@@ -258,8 +258,8 @@
       "id": "route-schedule",
       "type": "MultiCondition",
       "label": "Route Schedule",
-      "x": 2641,
-      "y": 124,
+      "x": 2630,
+      "y": 181,
       "config": {
         "conditions": [
           {
@@ -311,8 +311,8 @@
       "id": "create-sub-weekdays",
       "type": "CreateSubscription",
       "label": "Create Sub (Weekdays)",
-      "x": 2944,
-      "y": 83,
+      "x": 2941,
+      "y": 134,
       "config": {
         "properties": {
           "label": "Create Weekday Subscription",
@@ -335,8 +335,8 @@
       "id": "create-sub-alternate",
       "type": "CreateSubscription",
       "label": "Create Sub (Alternate)",
-      "x": 2943,
-      "y": 185,
+      "x": 2942,
+      "y": 236,
       "config": {
         "properties": {
           "label": "Create Alternate Day Subscription",
@@ -357,8 +357,8 @@
       "id": "create-sub-weekly",
       "type": "CreateSubscription",
       "label": "Create Sub (Weekly)",
-      "x": 2948,
-      "y": 293,
+      "x": 2942,
+      "y": 338,
       "config": {
         "properties": {
           "label": "Create Weekly Subscription",
@@ -377,8 +377,8 @@
       "id": "confirm-msg",
       "type": "SendWhatsapp",
       "label": "Send Confirmation",
-      "x": 3250,
-      "y": 50,
+      "x": 3269,
+      "y": 216,
       "config": {
         "label": "Send Confirmation WhatsApp",
         "messageBody": "✅ Hi {{session.customerName}}, your subscription is confirmed!\n\n📦 Plan: {{select-plan.selectedPlanId}}\n📅 Schedule: {{delivery-days.selectedTitle}}\n📍 Address: {{session.deliveryAddress}}, {{session.deliveryCity}} - {{session.deliveryPincode}}\n\nYou'll receive a reminder before each delivery. Thank you! 🎉",
